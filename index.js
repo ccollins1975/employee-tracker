@@ -50,7 +50,7 @@ function addDepartment() {
     inquirer.prompt([
         {
            type:"input"
-           name:
+           name:department_id
            message:
 
 
