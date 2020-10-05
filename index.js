@@ -1,7 +1,8 @@
 // const DB = require("./db");
 const inquirer = require("inquirer");
 const mysql = require("mysql");
-const cTable = require("console.table");
+require("console.table");
+const db = require("./db")
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -23,7 +24,7 @@ connection.connect(function (err) {
     start();
 });
 
-function start() {
+function departmentMenu() {
     inquirer.prompt([{
         type: "list",
         name: "prompt",
@@ -39,8 +40,7 @@ function start() {
                 viewDepartment();
                 break;
             case "Exit":
-                connection.end()
-        }
+                start();
 
     })
 }
@@ -61,6 +61,85 @@ function addDepartment() {
 }
 
 function viewDepartment() {
-    console.log("view")
-    start()
+    console.log;("view")
+    let dept = db.viewDepartments();
+    console.table(dept);
+    start();
+}
+function start () {
+    inquirer.prompt([{
+        type: "list",
+        name: "menu",
+        message: "How would you like to began",
+        choices: ["Department Menu", "Roles Menu","Employee Menu"]
+    }]).then(data => { 
+        console.log(data)
+        switch (data.menu) {
+            case "Department Menu":
+                departmentMenu();
+                break;
+            case "Roles Menu":
+                rolesMenu();
+                break;
+            case "Employee Menu":
+                employeeMenu();
+                break;
+    }});
+
+}
+
+function viewRole() {
+    console.log;("view")
+    let dept = db.viewRole();
+    console.table(dept);
+    start();
+}
+function start () {
+    inquirer.prompt([{
+        type: "list",
+        name: "menu",
+        message: "How would you like to began",
+        choices: ["Department Menu", "Roles Menu","Employee Menu"]
+    }]).then(data => { 
+        console.log(data)
+        switch (data.menu) {
+            case "Department Menu":
+                departmentMenu();
+                break;
+            case "Roles Menu":
+                rolesMenu();
+                break;
+            case "Employee Menu":
+                employeeMenu();
+                break;
+    }});
+
+}
+
+function viewEmployee() {
+    console.log;("view")
+    let dept = db.viewEmployee();
+    console.table(dept);
+    start();
+}
+function start () {
+    inquirer.prompt([{
+        type: "list",
+        name: "menu",
+        message: "How would you like to began",
+        choices: ["Department Menu", "Roles Menu","Employee Menu"]
+    }]).then(data => { 
+        console.log(data)
+        switch (data.menu) {
+            case "Department Menu":
+                departmentMenu();
+                break;
+            case "Roles Menu":
+                rolesMenu();
+                break;
+            case "Employee Menu":
+                employeeMenu();
+                break;
+    }});
+
 }
