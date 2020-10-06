@@ -94,7 +94,7 @@ function viewRole() {
     console.table(dept);
     start();
 }
-function start () {
+function departmentMenu () {
     inquirer.prompt([{
         type: "list",
         name: "menu",
@@ -122,7 +122,7 @@ function viewEmployee() {
     console.table(dept);
     start();
 }
-function start () {
+function rolesMenu () {
     inquirer.prompt([{
         type: "list",
         name: "menu",
@@ -143,3 +143,29 @@ function start () {
     }});
 
 }
+
+function viewEmployee() {
+    console.log;("view")
+    let dept = db.viewEmployee();
+    console.table(dept);
+    start();
+}
+function rolesMenu () {
+    inquirer.prompt([{
+        type: "list",
+        name: "menu",
+        message: "How would you like to began",
+        choices: ["Department Menu", "Roles Menu","Employee Menu"]
+    }]).then(data => { 
+        console.log(data)
+        switch (data.menu) {
+            case "Department Menu":
+                departmentMenu();
+                break;
+            case "Roles Menu":
+                rolesMenu();
+                break;
+            case "Employee Menu":
+                employeeMenu();
+                break;
+    }});
